@@ -1,4 +1,5 @@
 import { defineConfig, normalizePath } from "vite";
+import viteEslint from "vite-plugin-eslint";
 import react from "@vitejs/plugin-react";
 import path from "path";
 import autoprefixer from "autoprefixer";
@@ -48,6 +49,7 @@ export default defineConfig({
       // 通过 `@emotion/react` 包编译 emotion 中的特殊 jsx 语法
       jsxImportSource: "@emotion/react"
     }),
-    windi()
+    windi(),
+    viteEslint()
   ]
 });
