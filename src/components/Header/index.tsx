@@ -4,19 +4,28 @@ import { devDependencies } from "../../../package.json";
 
 import logoSrc from "@assets/vite.jpg";
 import { ReactComponent as ReactLogo } from "@assets/react.svg";
+import SvgIcon from "../SvgIcon";
 // worker
 import Worker from "./example.js?worker";
 // 1. 初始化 Worker 实例
 const worker = new Worker();
 // 2. 主线程监听 worker 的信息
 worker.addEventListener("message", (e) => {
-  // console.log(e);
+  console.log(e);
 });
+
 export function Header() {
   useEffect(() => {
     const img = document.getElementById("logo") as HTMLImageElement;
     img.src = logoSrc;
   }, []);
+  const icons = import.meta.glob("../../assets/react-*.svg", { eager: true });
+  const iconUrls = Object.values(icons).map((mod) => {
+    const fileName = (mod as { default: string }).default.split("/").pop();
+    const [svgName] = (fileName as string).split(".");
+    return svgName;
+  });
+
   return (
     <div>
       <p className={styles.header}>this is header</p>
@@ -37,7 +46,23 @@ export function Header() {
       </div>
       <img src={logoSrc} className="m-auto mb-4" />
       <img id="logo" className="m-auto mb-4" />
+      <img
+        src={
+          new URL("../../assets/vite.jpg", import.meta.env.VITE_IMG_BASE_URL)
+            .href
+        }
+      />
       <ReactLogo />
+      {iconUrls.map((item) => (
+        <SvgIcon
+          name={item}
+          key={item}
+          width="50"
+          height="50"
+          prefix="icon"
+          color="#333"
+        />
+      ))}
     </div>
   );
 }
