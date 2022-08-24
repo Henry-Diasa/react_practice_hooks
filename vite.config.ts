@@ -1,5 +1,6 @@
 import { defineConfig, normalizePath } from "vite";
 import viteEslint from "vite-plugin-eslint";
+import svgr from "vite-plugin-svgr";
 import react from "@vitejs/plugin-react";
 import path from "path";
 import autoprefixer from "autoprefixer";
@@ -50,6 +51,13 @@ export default defineConfig({
       jsxImportSource: "@emotion/react"
     }),
     windi(),
-    viteEslint()
-  ]
+    viteEslint(),
+    svgr()
+  ],
+  resolve: {
+    alias: {
+      "@assets": path.join(__dirname, "src/assets")
+    }
+  }
+  // assetsInclude: [] 其它格式的静态资源
 });
