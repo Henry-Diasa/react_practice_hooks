@@ -1,4 +1,4 @@
-import MiniRouter from "../components/Mini-router";
+import MiniRouter from "../components/Mini-router/index";
 import DemoHook from "../hooks/demoHook";
 export const routes = [
   {

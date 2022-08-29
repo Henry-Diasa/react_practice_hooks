@@ -7,6 +7,7 @@ specifiers:
   '@commitlint/config-conventional': ^17.0.3
   '@emotion/babel-plugin': ^11.10.2
   '@emotion/react': ^11.10.0
+  '@types/hoist-non-react-statics': ^3.3.1
   '@types/node': ^18.7.11
   '@types/react': ^18.0.17
   '@types/react-dom': ^18.0.6
@@ -22,6 +23,7 @@ specifiers:
   eslint-plugin-prettier: ^4.2.1
   eslint-plugin-react: ^7.30.1
   history: ^5.3.0
+  hoist-non-react-statics: ^3.3.2
   husky: ^8.0.1
   lint-staged: ^13.0.3
   postcss: ^8.1.0
@@ -48,8 +50,10 @@ specifiers:
 
 dependencies:
   '@ant-design/icons': registry.npmmirror.com/@ant-design/icons/4.7.0_biqbaboplfbrettd7655fr4n2y
+  '@types/hoist-non-react-statics': registry.npmmirror.com/@types/hoist-non-react-statics/3.3.1
   antd: registry.npmmirror.com/antd/4.22.8_biqbaboplfbrettd7655fr4n2y
   history: registry.npmmirror.com/history/5.3.0
+  hoist-non-react-statics: registry.npmmirror.com/hoist-non-react-statics/3.3.2
   react: registry.npmmirror.com/react/18.2.0
   react-dom: registry.npmmirror.com/react-dom/18.2.0_react@18.2.0
   react-router-dom: registry.npmmirror.com/react-router-dom/6.3.0_biqbaboplfbrettd7655fr4n2y
@@ -1219,6 +1223,15 @@ packages:
     version: 1.0.0
     dev: true
 
+  registry.npmmirror.com/@types/hoist-non-react-statics/3.3.1:
+    resolution: {integrity: sha512-iMIqiko6ooLrTh1joXodJK5X9xeEALT1kM5G3ZLhD3hszxBdIEd5C75U834D9mLcINgD4OyZf5uQXjkuYydWvA==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/hoist-non-react-statics/-/hoist-non-react-statics-3.3.1.tgz}
+    name: '@types/hoist-non-react-statics'
+    version: 3.3.1
+    dependencies:
+      '@types/react': registry.npmmirror.com/@types/react/18.0.17
+      hoist-non-react-statics: registry.npmmirror.com/hoist-non-react-statics/3.3.2
+    dev: false
+
   registry.npmmirror.com/@types/json-schema/7.0.11:
     resolution: {integrity: sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/json-schema/-/json-schema-7.0.11.tgz}
     name: '@types/json-schema'
@@ -1253,7 +1266,6 @@ packages:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/prop-types/-/prop-types-15.7.5.tgz}
     name: '@types/prop-types'
     version: 15.7.5
-    dev: true
 
   registry.npmmirror.com/@types/react-dom/18.0.6:
     resolution: {integrity: sha512-/5OFZgfIPSwy+YuIBP/FgJnQnsxhZhjjrnxudMddeblOouIodEQ75X14Rr4wGSG/bknL+Omy9iWlLo1u/9GzAA==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/react-dom/-/react-dom-18.0.6.tgz}
@@ -1271,13 +1283,11 @@ packages:
       '@types/prop-types': registry.npmmirror.com/@types/prop-types/15.7.5
       '@types/scheduler': registry.npmmirror.com/@types/scheduler/0.16.2
       csstype: registry.npmmirror.com/csstype/3.1.0
-    dev: true
 
   registry.npmmirror.com/@types/scheduler/0.16.2:
     resolution: {integrity: sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/scheduler/-/scheduler-0.16.2.tgz}
     name: '@types/scheduler'
     version: 0.16.2
-    dev: true
 
   registry.npmmirror.com/@types/svgo/2.6.4:
     resolution: {integrity: sha512-l4cmyPEckf8moNYHdJ+4wkHvFxjyW6ulm9l4YGaOxeyBWPhBOT0gvni1InpFPdzx1dKf/2s62qGITwxNWnPQng==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/svgo/-/svgo-2.6.4.tgz}
@@ -2444,7 +2454,6 @@ packages:
     resolution: {integrity: sha512-uX1KG+x9h5hIJsaKR9xHUeUraxf8IODOwq9JLNPq6BwB04a/xgpq3rcx47l5BZu5zBPlgD342tdke3Hom/nJRA==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/csstype/-/csstype-3.1.0.tgz}
     name: csstype
     version: 3.1.0
-    dev: true
 
   registry.npmmirror.com/dargs/7.0.0:
     resolution: {integrity: sha512-2iy1EkLdlBzQGvbweYRFxmFath8+K7+AKB0TlhHWkNuH+TmovaMH/Wp7V7R4u7f4SnX3OgLsU9t1NI9ioDnUpg==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/dargs/-/dargs-7.0.0.tgz}
@@ -3888,7 +3897,6 @@ packages:
     version: 3.3.2
     dependencies:
       react-is: registry.npmmirror.com/react-is/16.13.1
-    dev: true
 
   registry.npmmirror.com/hosted-git-info/2.8.9:
     resolution: {integrity: sha512-mxIDAb9Lsm6DoOJ7xH+5+X4y1LU/4Hi50L9C5sIswK3JzULS4bwk1FvjdBgvYR4bzT4tuUQiC15FE2f5HbLvYw==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/hosted-git-info/-/hosted-git-info-2.8.9.tgz}

@@ -8,7 +8,26 @@ import {
 
 import { BrowserHistory, createBrowserHistory as createHistory } from "history";
 
-export const RouterContext = createContext({});
+export interface IContext {
+  location: Record<string, unknown>;
+  history: Record<string, unknown>;
+  match: {
+    path: string;
+    url: string;
+    params: Record<string, unknown>;
+    isExact: boolean;
+  };
+}
+export const RouterContext = createContext({
+  location: {},
+  history: {},
+  match: {
+    path: "/",
+    url: "/",
+    params: {},
+    isExact: location.pathname === "/"
+  }
+});
 
 export let rootHistory: BrowserHistory;
 
