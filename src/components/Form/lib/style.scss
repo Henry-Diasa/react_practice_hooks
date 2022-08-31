@@ -1,0 +1,27 @@
+.form-label-name {
+  display: inline-block;
+}
+
+.form-label {
+  position: relative;
+  height: 70px;
+}
+
+.form-message {
+  position: absolute;
+  bottom: 0;
+  font-size: 12px;
+}
+
+.form-input {
+  width: 200px;
+  height: 35px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-select-option {
+  width: 200px;
+  height: 35px;
+  background-color: #fff;
+}

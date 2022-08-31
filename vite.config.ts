@@ -97,7 +97,14 @@ export default defineConfig({
       jsxImportSource: "@emotion/react"
     }),
     windi(),
-    viteEslint(),
+    viteEslint({
+      exclude: [
+        "src/components/**/*.jsx",
+        "src/components/**/*.js",
+        "src/components/**/*.tsx",
+        "src/components/**/*.ts"
+      ]
+    }),
     svgr(),
     // viteImagemin({
     //   // 无损压缩配置，无损压缩下图片质量不会变差
