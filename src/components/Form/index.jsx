@@ -21,9 +21,9 @@ function Index() {
   };
   return (
     <div style={{ marginTop: "50px" }}>
-      <Form initialValues={{ author: "我不是外星人" }} ref={form}>
+      <Form initialValues={{ author: "" }} ref={form}>
         <FormItem
-          label="请输入小册名称"
+          label="请输入名称"
           labelWidth={150}
           name="name"
           required
@@ -31,9 +31,9 @@ function Index() {
             rule: /^[a-zA-Z0-9_\u4e00-\u9fa5]{4,32}$/,
             message: "名称仅支持中文、英文字母、数字和下划线，长度限制4~32个字"
           }}
-          validateTrigger="onBlur"
+          validateTrigger="onChange"
         >
-          <Input placeholder="小册名称" />
+          <Input placeholder="名称" />
         </FormItem>
         <FormItem
           label="作者"

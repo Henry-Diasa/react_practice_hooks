@@ -42,6 +42,7 @@ function FormItem({
   }, [onStoreChange]);
   /* 使表单控件变成可控制的 */
   const getControlled = (child) => {
+    console.log(child);
     const mergeChildrenProps = { ...child.props };
     if (!name) return mergeChildrenProps;
     /* 改变表单单元项的值 */
