@@ -1,5 +1,6 @@
 import MiniRouter from "../components/Mini-router/index";
 import Form from "../components/Form";
+import Modal from "../components/Modal";
 import DemoHook from "../hooks/demoHook";
 export const routes = [
   {
@@ -9,6 +10,10 @@ export const routes = [
   {
     path: "/components/form",
     element: Form
+  },
+  {
+    path: "/components/modal",
+    element: Modal
   },
   {
     path: "/hooks/demo",
@@ -27,6 +32,10 @@ export const menus = [
       {
         path: "/components/form",
         label: "Form"
+      },
+      {
+        path: "/components/modal",
+        label: "Modal"
       }
     ]
   },
