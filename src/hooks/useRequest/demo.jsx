@@ -2,13 +2,14 @@ import { Input, Button } from "antd";
 import { useState, useRef } from "react";
 import { useRequest } from "./index";
 let success = true;
+let count = 0;
 function getName() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       // resolve("henry");
       // reject(new Error("失败了"));
       if (success) {
-        resolve("henry");
+        resolve(++count + "henry");
       } else {
         reject(new Error("获取失败"));
       }
@@ -59,9 +60,14 @@ function Index() {
 
   const lastRef = useRef();
   const [value, setValue] = useState("");
-  const { data: name, mutate } = useRequest(getName);
+  const { data: name, mutate } = useRequest(getName, {
+    name: "getName",
+    pollingInterval: 1000
+  });
   const { run, loading, cancel } = useRequest(updateName, {
     manual: true,
+    name: "updateName",
+    loadingDelay: 1000,
     onSuccess: (result, params) => {
       setValue("");
       console.log(`用户名成功变更为 "${params[0]}" !`);

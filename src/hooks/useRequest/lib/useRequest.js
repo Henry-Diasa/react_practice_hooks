@@ -5,16 +5,37 @@ import useMount from "./useMount";
 import Fetch from "./Fetch";
 import useMemoizedFn from "./useMemoizedFn";
 import useUnmount from "./useUnmount";
-function useRequest(service, options = {}) {
+// 插件
+import useLoggerPlugin from "../plugins/useLoggerPlugin";
+import useLoadingDelayPlugin from "../plugins/useLoadingDelayPlugin";
+import usePollingPlugin from "../plugins/usePollingPlugin";
+function useRequest(service, options = {}, plugins = []) {
+  plugins = [
+    ...plugins,
+    useLoggerPlugin,
+    useLoadingDelayPlugin,
+    usePollingPlugin
+  ];
   const { manual = false, ...rest } = options;
   const fetchOptions = { manual, ...rest };
   const serviceRef = useLatest(service);
   const update = useUpdate();
 
   const fetchInstance = useCreation(() => {
-    return new Fetch(serviceRef, fetchOptions, update);
+    const initState = plugins
+      .map((p) => p?.onInit?.(fetchOptions))
+      .filter(Boolean);
+    return new Fetch(
+      serviceRef,
+      fetchOptions,
+      update,
+      Object.assign({}, ...initState)
+    );
   }, []);
-
+  // [{onBefore, onRequest}]
+  fetchInstance.pluginImpls = plugins.map((p) =>
+    p(fetchInstance, fetchOptions)
+  );
   useMount(() => {
     if (!manual) {
       const params = fetchInstance.state.params || options.defaultParams || [];
