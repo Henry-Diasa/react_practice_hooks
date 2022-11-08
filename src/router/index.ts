@@ -4,6 +4,7 @@ import Modal from "../components/Modal";
 import DemoUseLog from "../hooks/useLog/demo";
 import DemoUseCreation from "../hooks/useCreation/demo";
 import DemoUseUpdate from "../hooks/useUpdate/demo";
+import DemoUseRequest from "../hooks/useRequest/demo";
 export const routes = [
   {
     path: "/components/mini-router",
@@ -28,6 +29,10 @@ export const routes = [
   {
     path: "/hooks/useUpdate",
     element: DemoUseUpdate
+  },
+  {
+    path: "/hooks/useRequest",
+    element: DemoUseRequest
   }
 ];
 
@@ -63,6 +68,10 @@ export const menus = [
       {
         path: "/hooks/useUpdate",
         label: "useUpdate"
+      },
+      {
+        path: "/hooks/useRequest",
+        label: "useRequest"
       }
     ]
   }
