@@ -60,26 +60,42 @@ function Index() {
 
   const lastRef = useRef();
   const [value, setValue] = useState("");
-  const { data: name, mutate } = useRequest(getName, {
+  const [ready, setReady] = useState(false);
+  const [userId, setUserId] = useState("1");
+  const {
+    data: name,
+    loading,
+    mutate,
+    run
+  } = useRequest(getName, {
     name: "getName",
-    pollingInterval: 1000
-  });
-  const { run, loading, cancel } = useRequest(updateName, {
-    manual: true,
-    name: "updateName",
-    loadingDelay: 1000,
-    onSuccess: (result, params) => {
-      setValue("");
-      console.log(`用户名成功变更为 "${params[0]}" !`);
+    refreshDeps: [userId],
+    refreshDepsAction() {
+      console.log("refreshDepsAction");
     },
-    onError: (error, params) => {
-      console.error(error.message);
-      mutate(lastRef.current);
-    },
-    onCancel: () => {
-      mutate(lastRef.current);
-    }
+    refreshOnWindowFocus: true,
+    focusTimespan: 5000
+    // manual: true,
+    // ready
+    // pollingInterval: 1000,
+    // pollingWhenHidden: false
   });
+  // const { run, loading, cancel } = useRequest(updateName, {
+  //   manual: true,
+  //   name: "updateName",
+  //   // loadingDelay: 1000,
+  //   onSuccess: (result, params) => {
+  //     setValue("");
+  //     console.log(`用户名成功变更为 "${params[0]}" !`);
+  //   },
+  //   onError: (error, params) => {
+  //     console.error(error.message);
+  //     mutate(lastRef.current);
+  //   },
+  //   onCancel: () => {
+  //     mutate(lastRef.current);
+  //   }
+  // });
   return (
     <>
       {/* <Input
@@ -113,7 +129,16 @@ function Index() {
       >
         {loading ? "更新中......." : "更新"}
       </Button>
-      <Button onClick={cancel}>取消</Button>
+      {/* <Button onClick={cancel}>取消</Button> */}
+      <p>
+        Ready: {JSON.stringify(ready)}
+        <Button onClick={() => setReady(!ready)}>切换Ready</Button>
+      </p>
+      <Button onClick={run}>run</Button>
+      <Input
+        value={userId}
+        onChange={(event) => setUserId(event.target.value)}
+      ></Input>
     </>
   );
 }

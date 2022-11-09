@@ -9,12 +9,16 @@ import useUnmount from "./useUnmount";
 import useLoggerPlugin from "../plugins/useLoggerPlugin";
 import useLoadingDelayPlugin from "../plugins/useLoadingDelayPlugin";
 import usePollingPlugin from "../plugins/usePollingPlugin";
+import useAutoRunPlugin from "../plugins/useAutoRunPlugin";
+import useRefreshOnWindowFocusPlugin from "../plugins/useRefreshOnWindowFocusPlugin";
 function useRequest(service, options = {}, plugins = []) {
   plugins = [
     ...plugins,
-    useLoggerPlugin,
-    useLoadingDelayPlugin,
-    usePollingPlugin
+    // useLoggerPlugin,
+    // useLoadingDelayPlugin
+    // usePollingPlugin,
+    // useAutoRunPlugin
+    useRefreshOnWindowFocusPlugin
   ];
   const { manual = false, ...rest } = options;
   const fetchOptions = { manual, ...rest };
@@ -49,6 +53,7 @@ function useRequest(service, options = {}, plugins = []) {
     loading: fetchInstance.state.loading,
     data: fetchInstance.state.data,
     error: fetchInstance.state.error,
+    params: fetchInstance.state.params || [],
     run: useMemoizedFn(fetchInstance.run.bind(fetchInstance)),
     runAsync: useMemoizedFn(fetchInstance.runAsync.bind(fetchInstance)),
     refresh: useMemoizedFn(fetchInstance.refresh.bind(fetchInstance)),

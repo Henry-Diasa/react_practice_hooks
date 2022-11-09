@@ -22,8 +22,20 @@ class Fetch {
   runAsync = async (...params) => {
     this.count += 1;
     const currentCount = this.count;
-    const { ...state } = this.runPluginHandler("onBefore", params);
+    const {
+      stopNow = false,
+      returnNow = false,
+      ...state
+    } = this.runPluginHandler("onBefore", params);
+    if (stopNow) {
+      return new Promise(() => {
+        console.log("stop");
+      });
+    }
     this.setState({ loading: true, params, ...state });
+    if (returnNow) {
+      return Promise.resolve(state.data);
+    }
     this.options.onBefore?.(params);
     try {
       let { servicePromise } = this.runPluginHandler(
@@ -35,6 +47,7 @@ class Fetch {
         servicePromise = this.serviceRef.current(...params);
       }
       const res = await servicePromise;
+      console.log(res);
       if (currentCount !== this.count) {
         return new Promise(() => {
           console.log("cancel");
